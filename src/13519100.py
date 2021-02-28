@@ -1,4 +1,8 @@
 #MAKE DICTIONARY
+#Fungsi untuk membuat dictionary graf dari 
+#  masukan teks yang diterima pertama kali
+#Key: mata kuliah (unik); 
+#Value: mata kuliah prasyarat terkait
 def makedict(f):
     dict = {}
     for line in f:
@@ -14,6 +18,10 @@ def makedict(f):
     return dict
 
 #COUNT VALUE PER KEYS
+#Fungsi untuk membuat dictionary 
+#   count mata kuliah prasyarat
+#Key: mata kuliah (unik); 
+#Value: jumlah mata kuliah prasyarat
 def count(dict):
     dict_c = dict.copy()
     for k in dict_c:
@@ -21,6 +29,11 @@ def count(dict):
     return dict_c
 
 #SELECT KEY TO BE DELETED
+#Fungsi untuk menghapus mata kuliah yang 
+#   tidak memiliki mata kuliah prasyarat
+#Akan mengembalikan dictionary graf yang baru 
+# serta array berisi list mata kuliah yang 
+# di delete (memiliki nol prasyarat)
 def delkey (dict1,dict_c):
     eachsem = []
     for k in dict_c:
@@ -30,15 +43,17 @@ def delkey (dict1,dict_c):
             dict1.pop(delete)
 
             for v in iter(dict1.values()):
-                for v1 in v: 
-                    if v1 == delete:
-                        v.remove(v1)
+                for element in v: 
+                    if element == delete:
+                        v.remove(element)
 
     count(dict1)
     dict_c.clear() #works!
     return dict1,eachsem
 
 #UPDATE THE PRINT
+#Membentuk dictionary dari array 
+# list mata kuliah dengan nol prasyarat
 def update(idx,value):
     prereq = {}
     key = "Semester " + str(idx)
@@ -46,6 +61,7 @@ def update(idx,value):
     return prereq
 
 #PRINT DICTIONARY
+#Print dictionary sesuai output yang diinginkan 
 def printd(dict):
     for k,v in dict.items():
         print(k,"  : ",end="")
@@ -57,7 +73,7 @@ def printd(dict):
                 print(", ",end="")
         print("\n")
         
-#ITERATE UNTIL EMPTY DICT
+#USER INTERACTION
 def welcome():
     name = input("Hallo, what's your name? ")
     yesno = input("Do you have any trouble in defining your subjects prerequisites? (Y/N) ")
@@ -69,12 +85,13 @@ def welcome():
 #MAIN
 yesno = welcome()
 
-if (yesno[0] == "Y" or "y"):
+if ((yesno[0] == "Y") or (yesno[0] == "y")):
     print("Well",yesno[1],"I'm here to help you!","\n")
+    #Meminta masukan file teks
     file = input("Insert your list of subjects in filename.txt format : ")
     print("\n")
 
-    f = open(file, "r")
+    f = open("../test/"+file, "r")
     dict = makedict(f)
 
     print("=============",yesno[1][:-1].upper()+"'S","LIST OF SUBJECTS =============","\n")
@@ -83,6 +100,7 @@ if (yesno[0] == "Y" or "y"):
     prereq = {}
     idx = 1
 
+    #Iterasi hingga dictionary graf awal menjadi empty ( {} )
     while dict != emptydict:
         dict_c = count(dict)
         new = delkey(dict,dict_c)
