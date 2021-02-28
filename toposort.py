@@ -7,12 +7,13 @@ dict = {}
 for line in f:
     i = 0
     for word in line.split():
+        word1 = word.rstrip(",.")
         i += 1
         if (i==1):
-            key = word
+            key = word1
             dict[key] = []
         else:
-            dict[key].append(word)
+            dict[key].append(word1)
 print("ORIGINAL DICT")
 print(dict)
 
@@ -24,7 +25,7 @@ def count(dict):
     dict_c = dict.copy()
     for k in dict_c:
         dict_c[k] = len(dict.get(k))
-
+    print(dict_c)
     return dict_c
 #print(dict_c)
 
@@ -40,16 +41,27 @@ def delkey (dict1,dict_c):
                     if v1 == delete:
                         v.remove(v1)
     print("NEW:")
+    print(dict1)
+    count(dict1)
     dict_c.clear() #works!
     return dict1
 
 #FUNCTION TEST
 
-dict_c = count(dict)
-new = delkey (dict,dict_c)
+#dict_c = count(dict)
+'''
+new = delkey (dict,count(dict))
+new1 = delkey(new,count(new))
+new2 = delkey(new1,count(new1))
+'''
+'''
+emptydict = {}
 
-print(new)
-print(count(new))
+while dict != emptydict:
+    delkey( delkey(dict,count(dict)),count(delkey(dict,count(dict))) )
+'''
+#print(new)
+#print(count(new))
 
 
 #ITERATE UNTIL EMPTY DICT
@@ -57,11 +69,12 @@ print(count(new))
 emptydict = {}
 
 while dict != emptydict:
+
     dict_c = count(dict)
     new = delkey (dict,dict_c)
 
-    print(new)
-    print(count(new))
-    
+    #print(new)
+    #print(count(new))
+
 
 #MAIN
