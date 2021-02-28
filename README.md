@@ -1,5 +1,5 @@
 # Penyusunan Rencana Kuliah dengan *Topological Sort* (Penerapan Decrease and Conquer)
-Sebagai pemenuhan Tugas Kecil 2 IF 2211 Strategi Algoritma Semester II Tahun 2020/2021
+### Sebagai pemenuhan Tugas Kecil 2 IF 2211 Strategi Algoritma Semester II Tahun 2020/2021
 ---
 
 ## Algoritma Decrease and Conquer
@@ -8,6 +8,7 @@ Mereduksi persoalan menjadi beberapa persoalan yang lebih kecil.
 Implementasi : 
 - Menghapus mata kuliah yang tidak memiliki prasyarat
 - Menghapus mata kuliah tersebut dari list prasyarat mata kuliah lain
+
 **2. Conquer**
 Memproses satu-upa persoalan secara rekursif. 
 Implementasi :
@@ -18,7 +19,7 @@ Data mata kuliah dan prasyarat di simpan dalam bentuk *dictionary*
 - Value : mata kuliah prasyarat dari *key*
 
 ## Instalasi dan cara menggunakan program
-1. Install python3 sesuai dengan petunjuk pada [link](https://www.python.org/downloads/)
+1. Install python3 sesuai dengan petunjuk pada [link berikut](https://www.python.org/downloads/)
 2. Pada command prompt, user harus masuk ke dalam direktori src yang berisi kode program.
 3. Setelah itu, jalankan command `python3 13519100.py`
 4. Selamat menjalankan program!
